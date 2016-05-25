@@ -1,7 +1,5 @@
 #include "ArticleRecommendSystem.h"
 
-
-
 ArticleRecommendSystem::ArticleRecommendSystem()
 {
 }
@@ -13,23 +11,28 @@ ArticleRecommendSystem::~ArticleRecommendSystem()
 
 bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 {
-	//file i/o by C
-	FILE *file;
-	file = fopen(dir.c_str(), "r");
+	ifstream file(dir);
 
-	if (file == NULL)
+	if (!file.is_open())
 	{
 		cout << "load " << dir << "failed." << endl;
 		return false;
 	}
-
+	
 	int id_count = 0;
 	User *p_user;
-	while (!feof(file))
+	while (!file.eof())
 	{
 		int id_s, article_s;
-		fscanf(file, "%d,%d", &id_s, &article_s); //todo
+		string temp; //temp string for convert to int
 
+		//split each line by getline() in the file
+		getline(file, temp, ',');
+		id_s = stoi(temp);
+		getline(file, temp);
+		article_s = stoi(temp);
+
+		//compare new with old to decide if get next user
 		if (id_s != id_count)
 		{
 			id_count = id_s;
@@ -43,17 +46,15 @@ bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 		}
 	}
 
-	fclose(file);
+	file.close();
 	return true;
 }
 
 bool ArticleRecommendSystem::loadArticleInfo(string dir)
 {
-	//file i/o by C
-	FILE *file;
-	file = fopen(dir.c_str(), "r");
+	ifstream file(dir);
 
-	if (file == NULL)
+	if (!file.is_open())
 	{
 		cout << "load " << dir << "failed." << endl;
 		return false;
@@ -61,11 +62,18 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 
 	int id_count = 0;
 	Article *p_article;
-	while (!feof(file))
+	while (!file.eof())
 	{
 		int id_s;
-		char title_s[1000], abstract_s[1000];
-		fscanf(file, "%d,\"%s\",\"%s\"", &id_s, &title_s, &abstract_s); //todo
+		string title_s, abstract_s;
+		string temp; //temp string for convert to int
+
+		getline(file, temp, '"');
+		id_s = stoi(temp);
+		getline(file, title_s, '"');
+		getline(file, temp, '"'); //to skip useless char
+		getline(file, abstract_s);
+		abstract_s.erase(abstract_s.end()-1);//to get the last string in a safer way
 
 		if (id_s != id_count)
 		{
@@ -80,9 +88,10 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 			p_article->setArticleTitle(title_s);
 			p_article->setArticleAbstract(abstract_s);
 		}
+		cout << id_count << endl;
 	}
 
-	fclose(file);
+	file.close();
 	return true;
 }
 
