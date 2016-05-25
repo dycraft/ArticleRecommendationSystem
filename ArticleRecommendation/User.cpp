@@ -44,7 +44,7 @@ void User::showUser()
 	int n = articlelist.size();
 	for (int j = 0; j < n; j++)
 	{
-		cout << "-- " << articlelist[j] << "\n";
+		cout << "|- " << articlelist[j] << "\n";
 	}
 	cout << endl;
 }

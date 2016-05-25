@@ -15,9 +15,10 @@ public:
 	~ArticleRecommendSystem();
 
 	bool loadUserTrainInfo(string dir);
-	bool loadArticalInfo(string dir);
+	bool loadArticleInfo(string dir);
 
 	//debug test method
 	void showUserList();
+	void showArticleList();
 };
 

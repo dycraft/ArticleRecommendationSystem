@@ -13,27 +13,22 @@ ArticleRecommendSystem::~ArticleRecommendSystem()
 
 bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 {
-	ifstream file(dir);
-	
-	if (!file.is_open())
+	//file i/o by C
+	FILE *file;
+	file = fopen(dir.c_str(), "r");
+
+	if (file == NULL)
 	{
 		cout << "load " << dir << "failed." << endl;
 		return false;
 	}
-	
+
 	int id_count = 0;
-	while (!file.eof())
+	User *p_user;
+	while (!feof(file))
 	{
-		User *p_user;
-
 		int id_s, article_s;
-		string line;
-		getline(file, line);
-		//stringstream line_stream;
-		//line_stream.str(line);
-		fscanf(file, "%d,%d", &id_s, &article_s);
-
-		line_stream >> id_s >> article_s;
+		fscanf(file, "%d,%d", &id_s, &article_s); //todo
 
 		if (id_s != id_count)
 		{
@@ -47,24 +42,47 @@ bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 			p_user->addArticle(article_s);
 		}
 	}
-	
-	file.close();
+
+	fclose(file);
 	return true;
 }
 
-bool ArticleRecommendSystem::loadArticalInfo(string dir)
+bool ArticleRecommendSystem::loadArticleInfo(string dir)
 {
-	fstream file(dir, 'r');
+	//file i/o by C
+	FILE *file;
+	file = fopen(dir.c_str(), "r");
 
-	if (!file.is_open())
+	if (file == NULL)
 	{
 		cout << "load " << dir << "failed." << endl;
 		return false;
 	}
 
-	
+	int id_count = 0;
+	Article *p_article;
+	while (!feof(file))
+	{
+		int id_s;
+		char title_s[1000], abstract_s[1000];
+		fscanf(file, "%d,\"%s\",\"%s\"", &id_s, &title_s, &abstract_s); //todo
 
-	file.close();
+		if (id_s != id_count)
+		{
+			id_count = id_s;
+			p_article = new Article(id_count);
+			articlelist.push_back(p_article);
+			p_article->setArticleTitle(title_s);
+			p_article->setArticleAbstract(abstract_s);
+		}
+		else
+		{
+			p_article->setArticleTitle(title_s);
+			p_article->setArticleAbstract(abstract_s);
+		}
+	}
+
+	fclose(file);
 	return true;
 }
 
@@ -74,5 +92,15 @@ void ArticleRecommendSystem::showUserList()
 	for (int i = 0; i < n; i++)
 	{
 		userlist[i]->showUser();
+	}
+}
+
+void ArticleRecommendSystem::showArticleList()
+{
+	int n = articlelist.size();
+	for (int i = 0; i < n; i++)
+	{
+		articlelist[i]->showArticle();
+		cout << endl;
 	}
 }

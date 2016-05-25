@@ -4,9 +4,8 @@
 int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
-	if (a->loadUserTrainInfo("user-info-train.txt"))
-		a->showUserList();
+	if (a->loadArticleInfo("raw-data.txt"))
+		a->showArticleList();
 
-	getchar();
 	return 0;
 }
