@@ -145,13 +145,18 @@
   <ItemGroup>
     <ClInclude Include="Article.h" />
     <ClInclude Include="ArticleRecommendSystem.h" />
+    <ClInclude Include="ItemRecommendation.h" />
+    <ClInclude Include="PersonalizedRecommendation.h" />
+    <ClInclude Include="SocialRecommendation.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="User.h" />
-    <ClInclude Include="UserSimilaritySolution.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="ArticleRecommendSystem.cpp" />
+    <ClCompile Include="ItemRecommendation.cpp" />
+    <ClCompile Include="PersonalizedRecommendation.cpp" />
+    <ClCompile Include="SocialRecommendation.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserSimilaritySolution.cpp" />

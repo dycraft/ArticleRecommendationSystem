@@ -27,7 +27,13 @@
     <ClInclude Include="Article.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="UserSimilaritySolution.h">
+    <ClInclude Include="SocialRecommendation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemRecommendation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonalizedRecommendation.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,6 +51,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="UserSimilaritySolution.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SocialRecommendation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemRecommendation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonalizedRecommendation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
