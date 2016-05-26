@@ -50,9 +50,6 @@
     <ClCompile Include="test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="UserSimilaritySolution.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="SocialRecommendation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
