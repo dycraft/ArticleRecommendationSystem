@@ -6,7 +6,8 @@ class User
 {
 private:
 	int id;
-	vector<int> articlelist;
+	vector<int> pastArticleList;
+	vector<int> alternativeList;
 
 public:
 	User();
@@ -19,7 +20,8 @@ public:
 
 	//operator method
 	void setUserId(int id_new);
-	void addArticle(int id_a);
+	void addPastArticle(int id_a);
+	void addAlternative(int id_a);
 
 	//debug method
 	void showUser();
