@@ -27,6 +27,9 @@
     <ClInclude Include="Article.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="UserSimilaritySolution.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArticleRecommendSystem.cpp">
@@ -39,6 +42,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UserSimilaritySolution.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -80,13 +80,13 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 			id_count = id_s;
 			p_article = new Article(id_count);
 			articleList.push_back(p_article);
-			p_article->setArticleTitle(title_s);
-			p_article->setArticleAbstract(abstract_s);
+			p_article->title = title_s;
+			p_article->abstra = abstract_s;
 		}
 		else
 		{
-			p_article->setArticleTitle(title_s);
-			p_article->setArticleAbstract(abstract_s);
+			p_article->title = title_s;
+			p_article->abstra = abstract_s;
 		}
 	}
 
@@ -103,7 +103,7 @@ bool ArticleRecommendSystem::loadAlternativeInfo(string dir)
 		cout << "load " << dir << "failed." << endl;
 		return false;
 	}
-	int u = 0;
+	
 	while (!file.eof())
 	{
 		int id_s, article_s;

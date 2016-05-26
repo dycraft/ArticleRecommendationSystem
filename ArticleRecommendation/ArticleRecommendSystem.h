@@ -16,7 +16,10 @@ public:
 
 	//File I/O
 	bool loadUserTrainInfo(string dir);
+
 	bool loadArticleInfo(string dir);
+
+	////only can be invoked after loadUserTrainInfo()
 	bool loadAlternativeInfo(string dir);
 
 	//recommendation Algorithms

@@ -7,6 +7,6 @@ int main()
 	if (a->loadUserTrainInfo("user-info-train.txt"))
 		if (a->loadAlternativeInfo("user-info-test.txt"))
 			a->showUserList();
-
+	
 	return 0;
 }

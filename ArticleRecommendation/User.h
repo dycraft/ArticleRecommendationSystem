@@ -2,24 +2,28 @@
 
 #include "stdafx.h"
 
+struct WeightArticle
+{
+	int id;
+	double weight;
+
+	WeightArticle():id(0), weight(0.0){}
+	WeightArticle(int _id) :id(_id), weight(0.0) {}
+};
+
 class User
 {
-private:
+public:
 	int id;
-	vector<int> pastArticleList;
-	vector<int> alternativeList;
+	vector<int> pastArticleList; //int equals WeightArticle but weight = 1 or 0
+	vector<WeightArticle> alternativeList;
 
 public:
 	User();
 	User(int id);
 	~User();
 
-	//access method
-	int getUserId();
-	int getArticleNum();
-
 	//operator method
-	void setUserId(int id_new);
 	void addPastArticle(int id_a);
 	void addAlternative(int id_a);
 
