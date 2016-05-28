@@ -45,3 +45,8 @@ void User::showUser()
 	}
 	cout << endl;
 }
+
+int cmp_WeightArticle(const void * a, const void * b)
+{
+	return (*(WeightArticle *)b).weight - (*(WeightArticle *)a).weight;
+}

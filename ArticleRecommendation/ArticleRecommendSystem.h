@@ -22,6 +22,8 @@ public:
 	////only can be invoked after loadUserTrainInfo()
 	bool loadAlternativeInfo(string dir);
 
+	bool writeRecommendInfo(string dir);
+
 	//recommendation Algorithms
 	void getPersonalizedRecommendation();
 	void getSocialRecommendation();
@@ -31,6 +33,10 @@ public:
 	void showUserList();
 	void showArticleList();
 };
+
+extern vector<WeightArticle> getTopN(vector<WeightArticle> &base, int top_n = TOP_N);
+
+//5551 - 16980
 
 /*
 1. Personalized recommendation: recommend things based on the indi-

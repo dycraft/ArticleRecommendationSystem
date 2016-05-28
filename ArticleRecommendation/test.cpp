@@ -4,9 +4,14 @@
 int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
-	if (a->loadUserTrainInfo("user-info-train.txt"))
-		if (a->loadAlternativeInfo("user-info-test.txt"))
-			a->showUserList();
+
+	a->loadUserTrainInfo("user-info-train.txt");
+	a->loadAlternativeInfo("user-info-test.txt");
+	//a->loadArticleInfo("raw-data.txt");
+
+	a->getSocialRecommendation();
+
+	a->writeRecommendInfo("SocialRecommend.txt");
 	
 	return 0;
 }

@@ -1,4 +1,7 @@
 #include "ArticleRecommendSystem.h"
+#include "ItemRecommendation.h"
+#include "PersonalizedRecommendation.h"
+#include "SocialRecommendation.h"
 
 ArticleRecommendSystem::ArticleRecommendSystem()
 {
@@ -89,7 +92,7 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 			p_article->abstra = abstract_s;
 		}
 	}
-
+	
 	file.close();
 	return true;
 }
@@ -122,12 +125,51 @@ bool ArticleRecommendSystem::loadAlternativeInfo(string dir)
 	return true;
 }
 
+bool ArticleRecommendSystem::writeRecommendInfo(string dir)
+{
+	ofstream file(dir);
+
+	if (!file.is_open())
+	{
+		cout << "load " << dir << "failed." << endl;
+		return false;
+	}
+
+	//getSocialRecommendation();
+
+	int n = userList.size();
+	for (int i = 0; i < n; i++)
+	{
+		vector<WeightArticle> v = getTopN(userList[i]->alternativeList, TOP_N);
+		file << userList[i]->id;
+		for (int j = 0; j < TOP_N; j++)
+		{
+			if (j == 0)
+			{
+				file << ',';
+			}
+			else
+			{
+				file << ';';
+			}
+			file << v[j].id;
+		}
+		file << '\n';
+	}
+
+	file.close();
+	return true;
+}
+
 void ArticleRecommendSystem::getPersonalizedRecommendation()
 {
 }
 
 void ArticleRecommendSystem::getSocialRecommendation()
 {
+	//SocialRecommendSolution *s = new SocialRecommendSolution(userList, articleList.size());
+	SocialRecommendSolution *s = new SocialRecommendSolution(userList, 16980);
+	s->getSolution();
 }
 
 void ArticleRecommendSystem::getItemRecommendation()
@@ -152,4 +194,26 @@ void ArticleRecommendSystem::showArticleList()
 		articleList[i]->showArticle();
 		cout << endl;
 	}
+}
+
+////extern function////
+
+vector<WeightArticle> getTopN(vector<WeightArticle>& base, int top_n)
+{
+	vector<WeightArticle> v(top_n + 1); // + 1 to reserve a temp position
+	
+	int n = base.size();
+	for (int i = 0; i < n; i++)
+	{
+		v[top_n] = base[i];
+		int j = top_n;
+		while ((j > 0) && (v[j-1].weight < v[j].weight))
+		{
+			swap(v[j-1], v[j]);
+			j--;
+		}
+	}
+
+	v.erase(v.end()-1); // erase the temp
+	return v;
 }
