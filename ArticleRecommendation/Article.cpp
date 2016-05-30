@@ -5,11 +5,15 @@
 Article::Article():
 	id(0)
 {
+	keyWords.clear();
+	keyRepeatMax = 0;
 }
 
 Article::Article(int id):
 	id(id)
 {
+	keyWords.clear();
+	keyRepeatMax = 0;
 }
 
 

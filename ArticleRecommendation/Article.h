@@ -8,6 +8,8 @@ public:
 	int id;
 	string title;
 	string abstra;
+	hash_map<string, double> keyWords;
+	int keyRepeatMax;
 
 public:
 	Article();

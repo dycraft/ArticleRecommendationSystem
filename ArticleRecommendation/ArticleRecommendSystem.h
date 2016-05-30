@@ -6,7 +6,7 @@
 
 class ArticleRecommendSystem
 {
-private:
+public:
 	vector<User*> userList;
 	vector<Article*> articleList;
 
