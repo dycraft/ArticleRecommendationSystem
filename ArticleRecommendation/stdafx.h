@@ -1,5 +1,7 @@
 #pragma once
 
+#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
+
 #include <stdio.h>
 #include<stdlib.h>
 #include <math.h>
