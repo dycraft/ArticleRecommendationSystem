@@ -7,18 +7,18 @@
 
 #define TOP_USER_N 10
 
-class UserSimilaritySolution
+class SocialRecommendSolution
 {
 private:
-	int userNum;
-	int articleNum;
+	const int userNum;
+	const int articleNum;
 	vector<User*> userList;
 
 	vector<vector<double>> userSimMatrix;
 
 public:
-	UserSimilaritySolution(vector<User*>& userList, int articleNum);
-	~UserSimilaritySolution();
+	SocialRecommendSolution(vector<User*>& userList, int articleNum);
+	~SocialRecommendSolution();
 
 	void getSolution();
 };
