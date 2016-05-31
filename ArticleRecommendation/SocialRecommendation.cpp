@@ -20,6 +20,8 @@ SocialRecommendSolution::~SocialRecommendSolution()
 
 void SocialRecommendSolution::getSolution()
 {
+	cout << "Begin to get social recommendation." << endl;
+
 	//make a item-user inverse table
 	vector<list<int>> inverseTable(articleNum + 1);
 
@@ -82,6 +84,8 @@ void SocialRecommendSolution::getSolution()
 			userList[i]->alternativeList[j].weight[SOCIAL] = ItemWeight[userList[i]->alternativeList[j].id];
 		}
 	}
+
+	cout << "Social recommendation completed." << endl;
 }
 
 double getUserSimilarity(User * a, User * b)

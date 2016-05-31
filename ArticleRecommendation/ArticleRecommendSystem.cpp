@@ -18,7 +18,7 @@ bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 
 	if (!file.is_open())
 	{
-		cout << "load " << dir << "failed." << endl;
+		cout << "Load " << dir << " failed." << endl;
 		return false;
 	}
 	
@@ -50,6 +50,7 @@ bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 	}
 
 	file.close();
+	cout << "Load " << dir << " succesfully." << endl;
 	return true;
 }
 
@@ -59,7 +60,7 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 
 	if (!file.is_open())
 	{
-		cout << "load " << dir << "failed." << endl;
+		cout << "Load " << dir << " failed." << endl;
 		return false;
 	}
 
@@ -94,6 +95,7 @@ bool ArticleRecommendSystem::loadArticleInfo(string dir)
 	}
 	
 	file.close();
+	cout << "Load " << dir << " succesfully." << endl;
 	return true;
 }
 
@@ -103,7 +105,7 @@ bool ArticleRecommendSystem::loadAlternativeInfo(string dir)
 
 	if (!file.is_open())
 	{
-		cout << "load " << dir << "failed." << endl;
+		cout << "Load " << dir << " failed." << endl;
 		return false;
 	}
 	
@@ -122,6 +124,7 @@ bool ArticleRecommendSystem::loadAlternativeInfo(string dir)
 	}
 
 	file.close();
+	cout << "Load " << dir << " succesfully." << endl;
 	return true;
 }
 
@@ -131,7 +134,7 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 
 	if (!file.is_open())
 	{
-		cout << "load " << dir << "failed." << endl;
+		cout << "load " << dir << " failed." << endl;
 		return false;
 	}
 
@@ -158,6 +161,7 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 	}
 
 	file.close();
+	cout << "Write " << dir << " succesfully." << endl;
 	return true;
 }
 

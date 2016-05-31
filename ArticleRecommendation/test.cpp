@@ -2,7 +2,7 @@
 #include "ArticleRecommendSystem.h"
 
 /*ldy*/
-/*int main()
+int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 	
@@ -15,10 +15,10 @@
 	a->writeRecommendInfo("SocialRecommend.txt", SOCIAL);
 	
 	return 0;
-}*/
+}
 
 /*yj*/
-int main()
+/*int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 
@@ -29,7 +29,7 @@ int main()
 	a->getPersonalizedRecommendation();
 
 	//a->writeRecommendInfo("PersonalRecommend.txt", PERSONAL);
-}
+}*/
 
 /*fkj*//*
 int main()
