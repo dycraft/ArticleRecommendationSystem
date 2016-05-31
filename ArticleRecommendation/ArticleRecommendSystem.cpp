@@ -168,7 +168,8 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 void ArticleRecommendSystem::getPersonalizedRecommendation()
 {
 	PersonalRecommendSolution *p = new PersonalRecommendSolution(userList, articleList);
-	p->testReco();
+	p->readKeyWordFromFile("IF_IDF.txt");
+	p->recommendArticle();
 }
 
 void ArticleRecommendSystem::getSocialRecommendation()

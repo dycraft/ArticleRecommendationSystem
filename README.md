@@ -16,7 +16,7 @@ The training data consists of 2 les which contains 5551 users and 16980 article
 
 + **raw-data.txt**: This file contains raw content for each article including article title and abstract. Each line is in the form of (article id, "article title", "article abstract").
 
-##### Test Data
+#### Test Data
 The test data consists of the same 5551 users as in the training data. For each user, 251 candidate articles are provides for prediction. Among these 251 articles, at least 5 articles have been collected by the user, others are sampled randomly. The test file is:
 
 + **user-info-test.txt**: The form of this le is the same with **user-info-train.txt**.
