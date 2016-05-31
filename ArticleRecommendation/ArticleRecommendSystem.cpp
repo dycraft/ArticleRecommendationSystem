@@ -125,7 +125,7 @@ bool ArticleRecommendSystem::loadAlternativeInfo(string dir)
 	return true;
 }
 
-bool ArticleRecommendSystem::writeRecommendInfo(string dir)
+bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 {
 	ofstream file(dir);
 
@@ -140,7 +140,7 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir)
 	int n = userList.size();
 	for (int i = 0; i < n; i++)
 	{
-		vector<WeightArticle> v = getTopN(userList[i]->alternativeList, TOP_N);
+		vector<WeightArticle> v = getTopN(userList[i]->alternativeList, mode, TOP_N);
 		file << userList[i]->id;
 		for (int j = 0; j < TOP_N; j++)
 		{
@@ -163,6 +163,8 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir)
 
 void ArticleRecommendSystem::getPersonalizedRecommendation()
 {
+	PersonalRecommendSolution *p = new PersonalRecommendSolution(userList, articleList);
+	p->testReco();
 }
 
 void ArticleRecommendSystem::getSocialRecommendation()
@@ -198,7 +200,7 @@ void ArticleRecommendSystem::showArticleList()
 
 ////extern function////
 
-vector<WeightArticle> getTopN(vector<WeightArticle>& base, int top_n)
+vector<WeightArticle> getTopN(vector<WeightArticle>& base, ALGO mode, int top_n)
 {
 	vector<WeightArticle> v(top_n + 1); // + 1 to reserve a temp position
 	
@@ -207,7 +209,7 @@ vector<WeightArticle> getTopN(vector<WeightArticle>& base, int top_n)
 	{
 		v[top_n] = base[i];
 		int j = top_n;
-		while ((j > 0) && (v[j-1].weight < v[j].weight))
+		while ((j > 0) && (v[j-1].weight[mode] < v[j].weight[mode]))
 		{
 			swap(v[j-1], v[j]);
 			j--;

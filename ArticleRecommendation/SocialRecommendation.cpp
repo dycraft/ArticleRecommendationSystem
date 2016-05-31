@@ -79,7 +79,7 @@ void SocialRecommendSolution::getSolution()
 		int n = userList[i]->alternativeList.size();
 		for (int j = 0; j < n; j++)
 		{
-			userList[i]->alternativeList[j].weight += ItemWeight[userList[i]->alternativeList[j].id];
+			userList[i]->alternativeList[j].weight[SOCIAL] = ItemWeight[userList[i]->alternativeList[j].id];
 		}
 	}
 }

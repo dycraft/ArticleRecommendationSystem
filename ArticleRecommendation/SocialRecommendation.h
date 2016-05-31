@@ -12,9 +12,9 @@ class SocialRecommendSolution
 private:
 	const int userNum;
 	const int articleNum;
-	vector<User*> userList;
 
-	vector<vector<double>> userSimMatrix;
+	vector<User*> userList; //a reference of param:userList
+	vector<vector<double>> userSimMatrix; //store the user similarity
 
 public:
 	SocialRecommendSolution(vector<User*>& userList, int articleNum);

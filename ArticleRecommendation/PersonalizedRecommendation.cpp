@@ -1,9 +1,10 @@
 #include "PersonalizedRecommendation.h"
+
 #define BeginPos 0
 #define EndPos 17000
 #define probleLine 6524  //English with Chinese
 
-UserItermSimilarSolution::UserItermSimilarSolution(vector<User*>& userList, vector<Article*>& articleList)
+PersonalRecommendSolution::PersonalRecommendSolution(vector<User*>& userList, vector<Article*>& articleList)
 {
 	m_userList = userList;
 	m_articleList = articleList;
@@ -27,11 +28,11 @@ UserItermSimilarSolution::UserItermSimilarSolution(vector<User*>& userList, vect
 	inFile.close();
 }
 
-void UserItermSimilarSolution::KeyWordByIF_IDF()
+void PersonalRecommendSolution::KeyWordByIF_IDF()
 {
 	if(!m_isInitial)
 	{
-		cout << "(In UseItermSimilarSolution)Error: please initial first..." << endl;
+		cout << "(In PersonalRecommendSolution)Error: please initial first..." << endl;
 		return;
 	}
 
@@ -151,7 +152,7 @@ bool ismun(string strinfo)
     return true;  
 }  
 
-void UserItermSimilarSolution::readKeyWordFromFile(string fileName)
+void PersonalRecommendSolution::readKeyWordFromFile(string fileName)
 {
 	ifstream inFile(fileName);
 	if(inFile.fail())
@@ -190,10 +191,10 @@ void UserItermSimilarSolution::readKeyWordFromFile(string fileName)
 //sort by weight
 bool copare(const WeightArticle& first,const WeightArticle& second)
 {                                                 
-	return first.weight > second.weight;
+	return first.weight[PERSONAL] > second.weight[PERSONAL];
 }
 
-void UserItermSimilarSolution::recommendArticle()
+void PersonalRecommendSolution::recommendArticle()
 {
 	for(int useIndex = 0; useIndex < m_userList.size(); useIndex++)
 	{
@@ -206,7 +207,7 @@ void UserItermSimilarSolution::recommendArticle()
 					hash_map<string, double>::iterator iter1 = m_articleList[m_userList[useIndex]->pastArticleList[i] - 1]->keyWords.find(iter->first);
 					if(iter1 != m_articleList[m_userList[useIndex]->pastArticleList[i] - 1]->keyWords.end())
 					{
-						m_userList[useIndex]->alternativeList[k].weight += iter->second * iter1->second;
+						m_userList[useIndex]->alternativeList[k].weight[PERSONAL] = iter->second * iter1->second;
 					}
 				}
 			}
@@ -221,7 +222,7 @@ void UserItermSimilarSolution::recommendArticle()
 		cout << "UseId: " << useIndex + 1 << " Top " << TOP_N << ": " << endl;
 		for(int k = 0; k < TOP_N; k++)
 		{
-			cout << setprecision(9) << "id: " << m_userList[0]->alternativeList[k].id << " weight: " << m_userList[0]->alternativeList[k].weight << endl;
+			cout << setprecision(9) << "id: " << m_userList[0]->alternativeList[k].id << " weight: " << m_userList[0]->alternativeList[k].weight[PERSONAL] << endl;
 		}
 		*/
 	}
@@ -231,7 +232,7 @@ void UserItermSimilarSolution::recommendArticle()
 /**********************************************************************************************
 *sava data in file for fast speed
 ***********************************************************************************************/
-void UserItermSimilarSolution::SaveIF_IDF_ToFile()
+void PersonalRecommendSolution::SaveIF_IDF_ToFile()
 {
 	ofstream out("IF_IDF1.txt", ios::app);
 	if(out.fail())
@@ -258,13 +259,13 @@ void UserItermSimilarSolution::SaveIF_IDF_ToFile()
 /**********************************************************************************************
 *Debug Method
 ***********************************************************************************************/
-void UserItermSimilarSolution::showStopWords()
+void PersonalRecommendSolution::showStopWords()
 {
 	if(m_isInitial)
 		cout << m_stopWords;
 }
 
-void UserItermSimilarSolution::showKeyWordWeight()
+void PersonalRecommendSolution::showKeyWordWeight()
 {
 	for(int k = 0; k < m_articleList.size(); k++)
 	{
@@ -276,7 +277,7 @@ void UserItermSimilarSolution::showKeyWordWeight()
 	}
 }
 
-void UserItermSimilarSolution::testReco()
+void PersonalRecommendSolution::testReco()
 {
 	for(int k = 0; k < m_userList[0]->alternativeList.size(); k++)
 	{

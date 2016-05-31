@@ -22,7 +22,7 @@ public:
 	////only can be invoked after loadUserTrainInfo()
 	bool loadAlternativeInfo(string dir);
 
-	bool writeRecommendInfo(string dir);
+	bool writeRecommendInfo(string dir, ALGO mode = FINAL);
 
 	//recommendation Algorithms
 	void getPersonalizedRecommendation();
@@ -34,7 +34,7 @@ public:
 	void showArticleList();
 };
 
-extern vector<WeightArticle> getTopN(vector<WeightArticle> &base, int top_n = TOP_N);
+extern vector<WeightArticle> getTopN(vector<WeightArticle> &base, ALGO mode = FINAL, int top_n = TOP_N);
 
 //5551 - 16980
 

@@ -5,7 +5,7 @@
 #include "User.h"
 #include "Article.h"
 
-class UserItermSimilarSolution
+class PersonalRecommendSolution
 {
 private:
 	vector<User*> m_userList;
@@ -14,9 +14,8 @@ private:
 	string m_stopWords;
 
 public:
-
-	UserItermSimilarSolution(vector<User*>& userList, vector<Article*>& articleList);     //get UserList And ArticleList
-	~UserItermSimilarSolution(){}
+	PersonalRecommendSolution(vector<User*>& userList, vector<Article*>& articleList);     //get UserList And ArticleList
+	~PersonalRecommendSolution(){}
 
 	void KeyWordByIF_IDF();   //IF-IDF
 	void readKeyWordFromFile(string fileName);
