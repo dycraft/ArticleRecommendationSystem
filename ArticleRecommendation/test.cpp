@@ -18,7 +18,7 @@
 }*/
 
 /*yj*/
-int main()
+/*int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 
@@ -29,10 +29,18 @@ int main()
 	a->getPersonalizedRecommendation();
 
 	a->writeRecommendInfo("PersonalRecommend.txt", PERSONAL);
-}
+}*/
 
 /*fkj*//*
 int main()
 {
 
 }*/
+
+int main()
+{
+	ArticleRecommendSystem *a = new ArticleRecommendSystem();
+
+	a->loadUserTrainInfo("user-info-train.txt");
+	a->generateRandomTrainInfo("train1.txt", "test1.txt", "answer1.txt");
+}
