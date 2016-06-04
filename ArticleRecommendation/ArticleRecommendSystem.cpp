@@ -2,6 +2,7 @@
 #include "ItemRecommendation.h"
 #include "PersonalizedRecommendation.h"
 #include "SocialRecommendation.h"
+#include"BPNN_Recommendation.h"
 
 ArticleRecommendSystem::ArticleRecommendSystem()
 {
@@ -263,6 +264,12 @@ void ArticleRecommendSystem::getSocialRecommendation()
 
 void ArticleRecommendSystem::getItemRecommendation()
 {
+}
+
+void ArticleRecommendSystem::getBPNNRecommendation()
+{
+	BPNN_Recommendation *Bp = new BPNN_Recommendation(userList, articleList);
+	Bp->training();
 }
 
 void ArticleRecommendSystem::showUserList()

@@ -32,6 +32,8 @@ public:
 	void getSocialRecommendation();
 	void getItemRecommendation();
 
+	void getBPNNRecommendation();
+
 	//debug test method
 	void showUserList();
 	void showArticleList();
