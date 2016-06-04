@@ -41,6 +41,6 @@ int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 
-	a->loadUserTrainInfo("user-info-train.txt");
-	a->generateRandomTrainInfo("train1.txt", "test1.txt", "answer1.txt");
+	a->loadUserTrainInfo("Data\\user-info-train.txt");
+	a->generateRandomTrainInfo("TestData\\train1.txt", "TestData\\test1.txt", "TestData\\answer1.txt");
 }

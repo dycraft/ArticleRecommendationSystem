@@ -190,7 +190,7 @@ void PersonalRecommendSolution::readKeyWordFromFile(string fileName)
 }
 
 //sort by weight
-bool copare(const WeightArticle& first,const WeightArticle& second)
+bool compare(const WeightArticle& first,const WeightArticle& second)
 {                                                 
 	return first.weight[PERSONAL] > second.weight[PERSONAL];
 }
@@ -215,7 +215,7 @@ void PersonalRecommendSolution::recommendArticle()
 		}
 
 		//sort and print TOP_N
-		sort(m_userList[useIndex]->alternativeList.begin(), m_userList[useIndex]->alternativeList.end(), copare);
+		sort(m_userList[useIndex]->alternativeList.begin(), m_userList[useIndex]->alternativeList.end(), compare);
 		
 		/*
 		cout << "UseId: " << useIndex + 1 << " Top " << TOP_N << ": " << endl;
