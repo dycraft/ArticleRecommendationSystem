@@ -43,6 +43,4 @@ int main()
 
 	a->loadUserTrainInfo("user-info-train.txt");
 	a->generateRandomTrainInfo("train1.txt", "test1.txt", "answer1.txt");
-
-
 }
