@@ -167,9 +167,8 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 }
 
 bool ArticleRecommendSystem::generateRandomTrainInfo(string trainDir,
-	string testDir, string ansDir, const int RECNUM, const int ALTERNUM)
+	string testDir, string ansDir, const int _RECNUM, const int ALTERNUM)
 {
-	//in(train) and out(answer) are both OutStream
 	ofstream trainStream(trainDir), testStream(testDir), answerStream(ansDir);
 
 	if (!trainStream.is_open())
@@ -210,6 +209,7 @@ bool ArticleRecommendSystem::generateRandomTrainInfo(string trainDir,
 		}
 
 		//divide into two parts: train(0~RECNUM-1) and answer(RECNUM~size)
+		int RECNUM = min(_RECNUM, m / 2); // (m >= 5) => (RECNUM >= 2)
 		////answer
 		answerStream << userList[i]->id;
 		for (int j = 0; j < RECNUM; j++)
