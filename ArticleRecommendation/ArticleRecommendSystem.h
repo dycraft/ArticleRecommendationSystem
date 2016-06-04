@@ -24,6 +24,9 @@ public:
 
 	bool writeRecommendInfo(string dir, ALGO mode = FINAL);
 
+	////only can be invoked after loadUserTrainInfo()
+	bool generateRandomTrainInfo(string trainDir, string testDir, string ansDir, const int RECNUM = 5, const int ALTERNUM = 251);
+
 	//recommendation Algorithms
 	void getPersonalizedRecommendation();
 	void getSocialRecommendation();

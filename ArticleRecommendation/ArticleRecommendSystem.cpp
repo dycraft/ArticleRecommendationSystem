@@ -165,6 +165,88 @@ bool ArticleRecommendSystem::writeRecommendInfo(string dir, ALGO mode)
 	return true;
 }
 
+bool ArticleRecommendSystem::generateRandomTrainInfo(string trainDir,
+	string testDir, string ansDir, const int RECNUM, const int ALTERNUM)
+{
+	//in(train) and out(answer) are both OutStream
+	ofstream trainStream(trainDir), testStream(testDir), answerStream(ansDir);
+
+	if (!trainStream.is_open())
+	{
+		cout << "load " << trainDir << " failed." << endl;
+		return false;
+	}
+	if (!testStream.is_open())
+	{
+		cout << "load " << testDir << " failed." << endl;
+		return false;
+	}
+	if (!answerStream.is_open())
+	{
+		cout << "load " << ansDir << " failed." << endl;
+		return false;
+	}
+
+	srand((unsigned int)time(NULL));
+
+	int n = userList.size();
+	for (int i = 0; i < n; i++)
+	{
+		//copy past article list
+		vector<int> list = userList[i]->pastArticleList;
+		vector<int> vec;
+		vec.assign(list.begin(), list.end());
+
+		//swap randomly to generate a random list
+		int m = vec.size();
+		for (int j = 0; j < m; j++)
+		{
+			int pos = rand() % m;
+			if (j != pos)
+			{
+				swap(vec[j], vec[pos]);
+			}
+		}
+
+		//divide into two parts: train(0~RECNUM-1) and answer(RECNUM~size)
+		////answer
+		answerStream << userList[i]->id;
+		for (int j = 0; j < RECNUM; j++)
+		{
+			answerStream << '\t' << vec[j];
+		}
+		answerStream << '\n';
+
+		////train
+		for (int j = RECNUM; j < m; j++)
+		{
+			trainStream << userList[i]->id << ',' << vec[j] << '\n';
+		}
+
+		////test
+		unordered_set<int> s;
+		for (int j = 0; j < RECNUM; j++)
+		{
+			s.insert(vec[j]);
+		}
+		//const int articleNum = articleList.size();
+		const int articleNum = ARTICLE_NUM;
+		while(s.size() <= ALTERNUM)
+		{
+			s.insert((rand() % articleNum) + 1); //because article's id begin with 1
+		}
+		for (unordered_set<int>::iterator it = s.begin(); it != s.end(); it++)
+		{
+			testStream << userList[i]->id << ',' << *it << '\n';
+		}
+	}
+	
+	trainStream.close();
+	testStream.close();
+	answerStream.close();
+	return true;
+}
+
 void ArticleRecommendSystem::getPersonalizedRecommendation()
 {
 	PersonalRecommendSolution *p = new PersonalRecommendSolution(userList, articleList);

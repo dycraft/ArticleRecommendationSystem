@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Article.h" />
     <ClInclude Include="ArticleRecommendSystem.h" />
+    <ClInclude Include="BPNN_Recommendation.h" />
     <ClInclude Include="ItemRecommendation.h" />
     <ClInclude Include="PersonalizedRecommendation.h" />
     <ClInclude Include="SocialRecommendation.h" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="Article.cpp" />
     <ClCompile Include="ArticleRecommendSystem.cpp" />
+    <ClCompile Include="BPNN_Recommendation.cpp" />
     <ClCompile Include="ItemRecommendation.cpp" />
     <ClCompile Include="PersonalizedRecommendation.cpp" />
     <ClCompile Include="SocialRecommendation.cpp" />

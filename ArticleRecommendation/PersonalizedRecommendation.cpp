@@ -41,6 +41,7 @@ void PersonalRecommendSolution::KeyWordByIF_IDF()
 	hash_map<string, double> kywd;
 	for(int k = BeginPos; k < m_articleList.size(); k++)
 	{
+		//debug
 		if(k != probleLine - 1)
 			continue;
 
@@ -207,23 +208,24 @@ void PersonalRecommendSolution::recommendArticle()
 					hash_map<string, double>::iterator iter1 = m_articleList[m_userList[useIndex]->pastArticleList[i] - 1]->keyWords.find(iter->first);
 					if(iter1 != m_articleList[m_userList[useIndex]->pastArticleList[i] - 1]->keyWords.end())
 					{
-						m_userList[useIndex]->alternativeList[k].weight[PERSONAL] = iter->second * iter1->second;
+						m_userList[useIndex]->alternativeList[k].weight[PERSONAL] += iter->second * iter1->second;
 					}
 				}
 			}
 		}
-	}
 
-	for(int useIndex = 0; useIndex < m_userList.size(); useIndex++)
-	{
 		//sort and print TOP_N
 		sort(m_userList[useIndex]->alternativeList.begin(), m_userList[useIndex]->alternativeList.end(), copare);
+		
 		/*
 		cout << "UseId: " << useIndex + 1 << " Top " << TOP_N << ": " << endl;
 		for(int k = 0; k < TOP_N; k++)
 		{
-			cout << setprecision(9) << "id: " << m_userList[0]->alternativeList[k].id << " weight: " << m_userList[0]->alternativeList[k].weight[PERSONAL] << endl;
+			cout << setprecision(9) << "id: " << m_userList[useIndex]->alternativeList[k].id << " weight: " << m_userList[useIndex]->alternativeList[k].weight[PERSONAL] << endl;
 		}
+		
+		if(useIndex == 2)
+			break;
 		*/
 	}
 }
