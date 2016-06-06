@@ -14,7 +14,6 @@ int main()
 
 	delete a;*/
 	
-	
 	ArticleRecommendSystem *ar = new ArticleRecommendSystem();
 	ar->loadArticleInfo("Data\\raw-data.txt");
 	ar->loadUserTrainInfo("TestData\\train1.txt");
