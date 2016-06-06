@@ -253,6 +253,7 @@ void ArticleRecommendSystem::getPersonalizedRecommendation()
 {
 	PersonalRecommendSolution *p = new PersonalRecommendSolution(userList, articleList);
 	p->readKeyWordFromFile("IF_IDF.txt");
+	//p->loadAnswerFromFile("TestData\\answer1.txt");
 	p->recommendArticle();
 }
 
@@ -260,6 +261,7 @@ void ArticleRecommendSystem::getSocialRecommendation()
 {
 	//SocialRecommendSolution *s = new SocialRecommendSolution(userList, articleList.size());
 	SocialRecommendSolution *s = new SocialRecommendSolution(userList, 16980);
+	//s->loadAnswerFromFile("TestData\\answer1.txt");
 	s->getSolution();
 }
 
@@ -267,6 +269,7 @@ void ArticleRecommendSystem::getItemRecommendation()
 {
 	ItemRecommendSolution *i = new ItemRecommendSolution(userList, articleList);
 	//i->getItemSimilarity();      //put similar into file
+	//i->loadAnswerFromFile("TestData\\answer1.txt");
 	i->getInItemSim();
 	i ->getSolution();
 }

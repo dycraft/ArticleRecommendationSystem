@@ -15,11 +15,13 @@ private:
 
 	vector<User*> userList; //a reference of param:userList
 	vector<vector<double>> userSimMatrix; //store the user similarity
+	vector<vector<int>> m_answer;
 
 public:
 	SocialRecommendSolution(vector<User*>& userList, int articleNum);
 	~SocialRecommendSolution();
 
+	void loadAnswerFromFile(string fileName);
 	void getSolution();
 };
 

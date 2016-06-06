@@ -12,6 +12,7 @@ int main()
 	a->generateRandomTrainInfo("TestData\\train1.txt",
 		"TestData\\test1.txt", "TestData\\answer1.txt");
 
+
 	delete a;*/
 	
 	ArticleRecommendSystem *ar = new ArticleRecommendSystem();

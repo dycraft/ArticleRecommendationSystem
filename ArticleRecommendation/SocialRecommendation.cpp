@@ -1,5 +1,72 @@
 #include "SocialRecommendation.h"
 
+////extern function////
+vector<WeightArticle> getTopN_S(vector<WeightArticle>& base, ALGO mode, int top_n)
+{
+	vector<WeightArticle> v(top_n + 1); // + 1 to reserve a temp position
+	
+	int n = base.size();
+	for (int i = 0; i < n; i++)
+	{
+		v[top_n] = base[i];
+		int j = top_n;
+		while ((j > 0) && (v[j-1].weight[mode] <= v[j].weight[mode]))
+		{
+			swap(v[j-1], v[j]);
+			j--;
+		}
+	}
+
+	v.erase(v.end()-1); // erase the temp
+	return v;
+}
+
+void SocialRecommendSolution::loadAnswerFromFile(string fileName)
+{
+	ifstream inAn(fileName);
+	if(inAn.fail())
+	{
+		cout << "ERROR: fail open answer.txt..." << endl;
+		return;
+	}
+
+	vector<int> an;
+	char p[10] = {0};
+	int startPos = 0;
+
+	while(!inAn.eof())
+	{
+		an.clear();
+		string str("");
+		getline(inAn, str);
+		while(1 && str != "")
+		{
+			int pos = str.find('\t', startPos + 1);
+			if(pos != string::npos)
+			{
+				if(startPos != 0)
+				{
+					str.copy(p, pos - startPos - 1, startPos + 1);
+					string str1(p, pos - startPos - 1);
+					an.push_back(atoi(str1.c_str()));
+				}
+				startPos = pos;
+			}
+			else
+			{
+				str.copy(p, str.length() - startPos - 1, startPos + 1);
+				string str1(p, str.length() - startPos - 1);
+				an.push_back(atoi(str1.c_str()));
+				break;
+			}
+
+		}
+		m_answer.push_back(an);
+		startPos = 0;
+	}
+}
+
+/*******************************************************************/
 SocialRecommendSolution::SocialRecommendSolution(vector<User*>& _userList, int _articleNum) :
 	userNum(_userList.size()),
 	articleNum(_articleNum)
@@ -20,6 +87,7 @@ SocialRecommendSolution::~SocialRecommendSolution()
 
 void SocialRecommendSolution::getSolution()
 {
+	double accu = 0.0;
 	cout << "Begin to get social recommendation." << endl;
 
 	//make a item-user inverse table
@@ -89,21 +157,25 @@ void SocialRecommendSolution::getSolution()
 		}
 
 		userList[i]->maxWeght[SOCIAL] = (userList[i]->maxWeght[SOCIAL] == 0.0 ? 1.0 : userList[i]->maxWeght[SOCIAL]);
-		//cout << "max: " << userList[i]->maxWeght[SOCIAL] << endl;
-		/*
-		if(i == 15)
+		
+		//figure accuracy
+		/*vector<WeightArticle> v = getTopN_S(userList[i]->alternativeList, SOCIAL, TOP_N);
+
+		int commom = 0;
+		for(int k = 0; k < m_answer[i].size(); k++)
 		{
-			for(int j = 0; j < userList[i]->alternativeList.size(); j++)
-				cout << userList[i]->alternativeList[j].weight[SOCIAL] << " ";
-			cout << endl;
+			for(int j = 0; j < m_answer[i].size(); j++)
+			{
+				if(v[k].id == m_answer[i][j])
+					commom++;
+			}
 		}
-		if(i == 16)
-		{
-			for(int j = 0; j < userList[i]->alternativeList.size(); j++)
-				cout << userList[i]->alternativeList[j].weight[SOCIAL] << " ";
-		}
-		*/
+
+		accu += (double)commom / m_answer[i].size();*/
 	}
+
+	/*accu /= userList.size();
+	cout << "Socail recommendation accuracy: " << accu << endl;*/
 
 	cout << "Social recommendation completed." << endl;
 }

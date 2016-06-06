@@ -12,6 +12,7 @@ private:
 	vector<Article*> m_articleList;
 	bool m_isInitial;               //make Sure initial first£¬IF-IDF next
 	string m_stopWords;
+	vector<vector<int>> m_answer;
 
 public:
 	PersonalRecommendSolution(vector<User*>& userList, vector<Article*>& articleList);     //get UserList And ArticleList
@@ -24,6 +25,7 @@ public:
 	//sava data in file for fast speed
 	void SaveIF_IDF_ToFile();
 
+	void loadAnswerFromFile(string fileName);
 	//Debug method
 	void showStopWords();
 	void showKeyWordWeight();

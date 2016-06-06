@@ -12,6 +12,7 @@ public:
 	vector<User*> m_userList;
 	vector<Article*> m_articleList;
 	vector<vector<double>> ItemSimMatrix; //store the item similarity
+	vector<vector<int>> m_answer;
 
 public:
 	ItemRecommendSolution(vector<User*>& userList, vector<Article*>& articleList);     //get UserList And ArticleList
@@ -20,5 +21,6 @@ public:
 	void getItemSimilarity();			//calculate the similarity between items
 	void getSolution();
 
+	void loadAnswerFromFile(string fileName);
 	void getInItemSim();
 };
