@@ -10,6 +10,7 @@ public:
 	int id;
 	vector<int> pastArticleList; //int equals WeightArticle but weight = 1 or 0
 	vector<WeightArticle> alternativeList;
+	double maxWeght[ALGO_NUM];
 
 public:
 	User();

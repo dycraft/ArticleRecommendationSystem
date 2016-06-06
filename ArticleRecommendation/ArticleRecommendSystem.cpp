@@ -35,6 +35,7 @@ bool ArticleRecommendSystem::loadUserTrainInfo(string dir)
 		id_s = stoi(temp);
 		getline(file, temp);
 		article_s = stoi(temp);
+		articleList[article_s - 1]->users.push_back(id_s);
 
 		//compare new with old to decide if get next user
 		if (id_s != id_count)
@@ -264,12 +265,20 @@ void ArticleRecommendSystem::getSocialRecommendation()
 
 void ArticleRecommendSystem::getItemRecommendation()
 {
+	ItemRecommendSolution *i = new ItemRecommendSolution(userList, articleList);
+	//i->getItemSimilarity();      //put similar into file
+	i->getInItemSim();
+	i ->getSolution();
 }
 
 void ArticleRecommendSystem::getBPNNRecommendation()
 {
 	BPNN_Recommendation *Bp = new BPNN_Recommendation(userList, articleList);
-	Bp->training();
+	Bp->loadAnswerFromFile("answer1.txt");
+	//Bp->trainingXY();
+	//Bp->recommendArticle();
+	Bp->training();                //training NN model
+	//Bp->recommendArticleByBP();
 }
 
 void ArticleRecommendSystem::showUserList()
@@ -303,7 +312,7 @@ vector<WeightArticle> getTopN(vector<WeightArticle>& base, ALGO mode, int top_n)
 	{
 		v[top_n] = base[i];
 		int j = top_n;
-		while ((j > 0) && (v[j-1].weight[mode] < v[j].weight[mode]))
+		while ((j > 0) && (v[j-1].weight[mode] <= v[j].weight[mode]))
 		{
 			swap(v[j-1], v[j]);
 			j--;

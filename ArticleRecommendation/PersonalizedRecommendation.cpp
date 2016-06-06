@@ -41,10 +41,6 @@ void PersonalRecommendSolution::KeyWordByIF_IDF()
 	hash_map<string, double> kywd;
 	for(int k = BeginPos; k < m_articleList.size(); k++)
 	{
-		//debug
-		if(k != probleLine - 1)
-			continue;
-
 		kywd.clear();
 		m_articleList[k]->keyRepeatMax = 0;
 		//title
@@ -189,14 +185,9 @@ void PersonalRecommendSolution::readKeyWordFromFile(string fileName)
 	inFile.close();
 }
 
-//sort by weight
-bool compare(const WeightArticle& first,const WeightArticle& second)
-{                                                 
-	return first.weight[PERSONAL] > second.weight[PERSONAL];
-}
-
 void PersonalRecommendSolution::recommendArticle()
 {
+	cout << "Begin to get personal recommendation." << endl;
 	for(int useIndex = 0; useIndex < m_userList.size(); useIndex++)
 	{
 		for(int k = 0; k < m_userList[useIndex]->alternativeList.size(); k++)  //alternative article
@@ -212,22 +203,27 @@ void PersonalRecommendSolution::recommendArticle()
 					}
 				}
 			}
+			//max weight
+			if(m_userList[useIndex]->maxWeght[PERSONAL] < m_userList[useIndex]->alternativeList[k].weight[PERSONAL])
+				m_userList[useIndex]->maxWeght[PERSONAL] = m_userList[useIndex]->alternativeList[k].weight[PERSONAL];
 		}
-
-		//sort and print TOP_N
-		sort(m_userList[useIndex]->alternativeList.begin(), m_userList[useIndex]->alternativeList.end(), compare);
-		
+		m_userList[useIndex]->maxWeght[PERSONAL] = (m_userList[useIndex]->maxWeght[PERSONAL] == 0.0 ? 1.0 : m_userList[useIndex]->maxWeght[PERSONAL]);
 		/*
-		cout << "UseId: " << useIndex + 1 << " Top " << TOP_N << ": " << endl;
-		for(int k = 0; k < TOP_N; k++)
+		if(useIndex == 15)
 		{
-			cout << setprecision(9) << "id: " << m_userList[useIndex]->alternativeList[k].id << " weight: " << m_userList[useIndex]->alternativeList[k].weight[PERSONAL] << endl;
+			for(int j = 0; j < m_userList[useIndex]->alternativeList.size(); j++)
+				cout << m_userList[useIndex]->alternativeList[j].weight[PERSONAL] << " ";
+			cout << endl;
 		}
-		
-		if(useIndex == 2)
-			break;
+		if(useIndex == 16)
+		{
+			for(int j = 0; j < m_userList[useIndex]->alternativeList.size(); j++)
+				cout << m_userList[useIndex]->alternativeList[j].weight[PERSONAL] << " ";
+		}
 		*/
 	}
+
+	cout << "Personal recommendation completed." << endl;
 }
 
 

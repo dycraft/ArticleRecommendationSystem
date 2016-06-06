@@ -2,14 +2,14 @@
 #include "ArticleRecommendSystem.h"
 #include"BPNN_Recommendation.h"
 
-/*ldy*/
-/*int main()
+/*ldy*//*
+int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 	
+	a->loadArticleInfo("raw-data.txt");
 	a->loadUserTrainInfo("user-info-train.txt");
 	a->loadAlternativeInfo("user-info-test.txt");
-	//a->loadArticleInfo("raw-data.txt");
 		
 	a->getSocialRecommendation();
 	
@@ -18,14 +18,14 @@
 	return 0;
 }*/
 
-/*yj*/
-/*int main()
+/*yj*//*
+int main()
 {
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 
+	a->loadArticleInfo("raw-data.txt");
 	a->loadUserTrainInfo("user-info-train.txt");
 	a->loadAlternativeInfo("user-info-test.txt");
-	a->loadArticleInfo("raw-data.txt");
 
 	a->getPersonalizedRecommendation();
 
@@ -35,31 +35,43 @@
 /*fkj*//*
 int main()
 {
-
+	ArticleRecommendSystem *a = new ArticleRecommendSystem();
+	
+	a->loadArticleInfo("raw-data.txt");
+	a->loadUserTrainInfo("user-info-train.txt");
+	a->loadAlternativeInfo("user-info-test.txt");
+		
+	a->getItemRecommendation();
+	
+	a->writeRecommendInfo("ItemRecommend.txt", ITEM);
+	
+	return 0;
 }*/
 
+/*final*/
 int main()
 {
-	/*
+    /*
 	ArticleRecommendSystem *a = new ArticleRecommendSystem();
 
+	a->loadArticleInfo("raw-data.txt");
 	a->loadUserTrainInfo("user-info-train.txt");
 	a->generateRandomTrainInfo("train1.txt", "test1.txt", "answer1.txt");
 
 	delete a;
-
-	ArticleRecommendSystem *ar = new ArticleRecommendSystem();
-	ar->loadUserTrainInfo("train1.txt");
-	ar->loadAlternativeInfo("test1.txt");
-	//ar->loadArticleInfo("raw-data.txt");
-
-	//a->getSocialRecommendation();
-	//a->getPersonalizedRecommendation();
-
-	//a->getBPNNRecommendation();
+	
 	*/
 	
-	BPNN_Recommendation *bp = new BPNN_Recommendation();
-	bp->loadAnswerFromFile("answer1.txt");
-	bp->showAnswer();
+	ArticleRecommendSystem *ar = new ArticleRecommendSystem();
+	ar->loadArticleInfo("raw-data.txt");
+	ar->loadUserTrainInfo("train1.txt");
+	ar->loadAlternativeInfo("test1.txt");
+	
+	ar->getSocialRecommendation();
+	ar->getPersonalizedRecommendation();
+	ar->getItemRecommendation();
+
+	ar->getBPNNRecommendation();
+	//ar->writeRecommendInfo("MixRecommend.txt", FINAL);
+	
 }

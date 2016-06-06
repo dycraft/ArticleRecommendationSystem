@@ -10,23 +10,28 @@ public:
 	vector<User*> m_userList;
 	vector<Article*> m_articleList;
 	vector<vector<int>> m_answer;
-	double m_x, m_y, m_z;             //mix percentage
+	double m_accuracy; 
+	double m_x, m_y;
 
 public:
 	BPNN_Recommendation(vector<User*>& userList, vector<Article*>& articleList); //get UserList And ArticleList
-	BPNN_Recommendation(){m_answer.clear();};
+	BPNN_Recommendation(){m_answer.clear(); m_x = m_y = m_accuracy = 0.0;};
 	~BPNN_Recommendation(){}
 
 	void loadAnswerFromFile(string fileName);
+	
+	void trainingXY();
+	void recommendArticle();
 
-	void makeChange(double& change, char mode);
-	void changex(double& x);
-	void changey(double& y);
-
-	void trainingx(double& x);
-	void trainingy(double& y);
 	void training();
+	void recommendArticleByBP();
+	//write m_x m_y into file
+	void WriteXYintoFile();
+	//read m_x m_y into file
+	void ReadXYintoFile(string fileName);
 
 	//Debug method
 	void showAnswer();
+	void printNNInput(vector<vector<double>>& input);
+	void printNNOutput(vector<vector<double>>& output);
 };

@@ -4,6 +4,7 @@
 #include "User.h"
 #include "Article.h"
 
+//read article before user
 class ArticleRecommendSystem
 {
 public:

@@ -53,6 +53,7 @@ void SocialRecommendSolution::getSolution()
 		}
 	}
 	
+	/*
 	//standardiztion
 	for (int i = 0; i < userNum; i++)
 	{
@@ -64,6 +65,7 @@ void SocialRecommendSolution::getSolution()
 			userSimMatrix[userList[j]->id][userList[i]->id] = userSimMatrix[userList[i]->id][userList[j]->id];
 		}
 	}
+	*/
 
 	//get recommendation weight
 	for (int i = 0; i < userNum; i++)
@@ -82,7 +84,25 @@ void SocialRecommendSolution::getSolution()
 		for (int j = 0; j < n; j++)
 		{
 			userList[i]->alternativeList[j].weight[SOCIAL] = ItemWeight[userList[i]->alternativeList[j].id];
+			if(userList[i]->alternativeList[j].weight[SOCIAL] > userList[i]->maxWeght[SOCIAL])
+				userList[i]->maxWeght[SOCIAL] = userList[i]->alternativeList[j].weight[SOCIAL];
 		}
+
+		userList[i]->maxWeght[SOCIAL] = (userList[i]->maxWeght[SOCIAL] == 0.0 ? 1.0 : userList[i]->maxWeght[SOCIAL]);
+		//cout << "max: " << userList[i]->maxWeght[SOCIAL] << endl;
+		/*
+		if(i == 15)
+		{
+			for(int j = 0; j < userList[i]->alternativeList.size(); j++)
+				cout << userList[i]->alternativeList[j].weight[SOCIAL] << " ";
+			cout << endl;
+		}
+		if(i == 16)
+		{
+			for(int j = 0; j < userList[i]->alternativeList.size(); j++)
+				cout << userList[i]->alternativeList[j].weight[SOCIAL] << " ";
+		}
+		*/
 	}
 
 	cout << "Social recommendation completed." << endl;

@@ -2,6 +2,9 @@
 
 #define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
 
+#include "targetver.h"
+
+#include <tchar.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

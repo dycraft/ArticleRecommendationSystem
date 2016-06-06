@@ -3,11 +3,15 @@
 User::User():
 	id(0)
 {
+	for(int k = 0; k < ALGO_NUM; k++)
+		maxWeght[k] = 0.0;
 }
 
 User::User(int id):
 	id(id)
 {
+	for(int k = 0; k < ALGO_NUM; k++)
+		maxWeght[k] = 0.0;
 }
 
 

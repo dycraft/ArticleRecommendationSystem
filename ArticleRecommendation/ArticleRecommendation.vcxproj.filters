@@ -39,6 +39,33 @@
     <ClInclude Include="BPNN_Recommendation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="activefunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BPLearning.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="network.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="neuron.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sigmodfunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="supervisedlearning.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArticleRecommendSystem.cpp">
@@ -63,6 +90,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="BPNN_Recommendation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BPLearning.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="layer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="network.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="neuron.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sigmodfunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
