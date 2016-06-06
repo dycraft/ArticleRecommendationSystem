@@ -274,11 +274,11 @@ void ArticleRecommendSystem::getItemRecommendation()
 void ArticleRecommendSystem::getBPNNRecommendation()
 {
 	BPNN_Recommendation *Bp = new BPNN_Recommendation(userList, articleList);
-	Bp->loadAnswerFromFile("answer1.txt");
+	Bp->loadAnswerFromFile("TestData\\answer1.txt");
 	//Bp->trainingXY();
 	//Bp->recommendArticle();
-	Bp->training();                //training NN model
-	//Bp->recommendArticleByBP();
+	//Bp->training();                //training NN model
+	Bp->recommendArticleByBP();
 }
 
 void ArticleRecommendSystem::showUserList()
