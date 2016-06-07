@@ -27,6 +27,8 @@ The test data consists of the same 5551 users as in the training data. For each 
 
 0. [UserCF and ItemCF](https://www.zybuluo.com/xtccc/note/200979)
 
+0. [BPNN](https://github.com/AzoresCabbage/BP_NeuronNetwork)
+
 ## Project Environment
 
 + VS 2015 (v140)
